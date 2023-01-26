@@ -4,11 +4,12 @@ import TaskItem from "../task-item/task-item";
 import React from "react";
 import Row from "../grid/row";
 import "./task-column.css";
-import Flex from "../common/flex";
+import Flex from "../grid/flex";
 
-interface TaskColumnProps {
+interface TaskColumnProps extends React.HTMLAttributes<HTMLDivElement>{
     statusName: string
     tasks: Task[]
+    onAddCardClick?: any
 }
 
 const TaskColumn = (props: TaskColumnProps) => {
@@ -40,7 +41,7 @@ const TaskColumn = (props: TaskColumnProps) => {
                     }
                 </Column>
             </Flex>
-            <button>Add a card...</button>
+            <button onClick={props.onAddCardClick}>Add a card...</button>
         </Column>
     )
 }

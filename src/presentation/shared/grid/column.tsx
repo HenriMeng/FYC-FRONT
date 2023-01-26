@@ -1,15 +1,15 @@
 import React from "react";
 
-const Column = (props: any) => {
+const Column = (props: React.HTMLAttributes<HTMLDivElement>) => {
     const columnStyle: React.CSSProperties = {
         display: 'flex',
         flexDirection: 'column',
+        ...props.style,
         gap: '1rem',
-        ...props.style
     }
 
     return (
-        <div style={columnStyle} className={props.className}>
+        <div {...props} style={columnStyle}>
             {props.children}
         </div>
     )

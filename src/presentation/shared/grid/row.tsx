@@ -1,14 +1,14 @@
 import React from "react";
 
-const Row = (props: any) => {
+const Row = (props: React.HTMLAttributes<HTMLDivElement>) => {
     const rowStyle: React.CSSProperties = {
         display: 'flex',
+        ...props.style,
         gap: '1rem',
-        ...props.style
     }
 
     return (
-        <div style={rowStyle}>
+        <div {...props} style={rowStyle}>
             {props.children}
         </div>
     )
