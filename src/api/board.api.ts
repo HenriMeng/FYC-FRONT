@@ -1,16 +1,25 @@
+import {Board} from "../domain/board.model";
 import {Task} from "../domain/task.model";
-import {tasksDoing, tasksDone, tasksResources, tasksTodo} from "./board.mock";
 
-export function getFullFilledBoard(): Promise<Task[]> {
+export function getFullFilledBoard(): Promise<Board[]> {
 
-    return new Promise((resolve) => {
-        setTimeout(() => {
-            resolve([
-                ...tasksResources,
-                ...tasksTodo,
-                ...tasksDoing,
-                ...tasksDone
-            ])
-        }, 300);
-    })
+    return fetch('http://localhost:3000/boards')
+        .then(response => response.json())
+        .then(data => {
+            return data.map((board: any) => {
+                return {
+                    id: board._id,
+                    name: board.name,
+                    tasks: board.tasks.map((task: any) => {
+                        return {
+                            id: task._id,
+                            title: task.title,
+                            content: task.content,
+                            createdAt: task.createdAt,
+                            status: task.status
+                        } as Task;
+                    })
+                } as Board;
+            })
+        });
 }

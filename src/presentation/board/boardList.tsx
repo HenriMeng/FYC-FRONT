@@ -2,16 +2,15 @@ import React, {useEffect, useState} from "react";
 import Row from "../shared/grid/row";
 import TaskColumn from "../shared/task-column/task-column";
 import {getFullFilledBoard} from "../../api/board.api";
-import {Task} from "../../domain/task.model";
 import {ToastProps} from "../shared/common/toast/toast";
 import ToastsContainer from "../shared/common/toast/toasts.container";
-import {useBoardWebsocket} from "./board.websocket";
+import {Board} from "../../domain/board.model";
 
 
-const Board = () => {
-    const [state, setState] = useState<Task[]>([]);
+const BoardList = () => {
+    const [state, setState] = useState<Board[]>([]);
     const [toasts, setToasts] = useState<ToastProps[]>([]);
-    const {
+    /*const {
         websocketState,
         setWebsocketState,
         setUpWebsocket,
@@ -19,13 +18,15 @@ const Board = () => {
         emitAddCard
     } = useBoardWebsocket()
 
+     */
+
     useEffect(() => {
-        setUpWebsocket(setToasts, setState)
+        //setUpWebsocket(setToasts, setState)
         asyncGetBoard()
 
-        return () => {
-            discardWebsocket()
-        };
+        //return () => {
+        //discardWebsocket()
+        //};
     }, []);
 
     return (
@@ -36,13 +37,14 @@ const Board = () => {
             <ToastsContainer toasts={toasts}/>
             <Row>
                 {
-                    [...new Set(state.map(item => item.status))]
-                        .map((statusName, index) => {
+                    [...new Set(state.map(boards => boards))]
+                        .map((board, index) => {
+                            console.log(board)
                             return <TaskColumn
                                 key={`TaskColumn-${index}`}
-                                statusName={statusName}
-                                tasks={state.filter(item => item.status === statusName)}
-                                onAddCardClick={emitAddCard}
+                                boardName={board.name || "board"}
+                                tasks={board.tasks}
+                                //onAddCardClick={emitAddCard}
                             />
                         })
                 }
@@ -73,4 +75,4 @@ const Board = () => {
     }
 }
 
-export default Board
+export default BoardList

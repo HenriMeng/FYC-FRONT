@@ -6,14 +6,14 @@ import Row from "../grid/row";
 import "./task-column.css";
 import Flex from "../grid/flex";
 
-interface TaskColumnProps extends React.HTMLAttributes<HTMLDivElement>{
-    statusName: string
+interface TaskColumnProps extends React.HTMLAttributes<HTMLDivElement> {
+    boardName: string
     tasks: Task[]
     onAddCardClick?: any
 }
 
 const TaskColumn = (props: TaskColumnProps) => {
-    const {statusName, tasks} = props
+    const {boardName, tasks} = props
 
     const taskColumnStyle: React.CSSProperties = {
         backgroundColor: '#eae1d9',
@@ -26,7 +26,7 @@ const TaskColumn = (props: TaskColumnProps) => {
     return (
         <Column style={taskColumnStyle}>
             <Row style={{justifyContent: 'space-between'}}>
-                <h3 style={{color: 'black', fontSize: '17px'}}>{statusName}</h3>
+                <h3 style={{color: 'black', fontSize: '17px'}}>{boardName}</h3>
                 <button className="TaskColumnButton">...</button>
             </Row>
             <Flex>

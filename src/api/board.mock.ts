@@ -38,7 +38,7 @@ export const tasksTodo: Task[] = [
     }),
     new Task({
         id: 2,
-        content: 'Nacho Ordinay Birthday - Event Space Rentals',
+        content: 'test Ordinay Birthday - Event Space Rentals',
         date: today,
         status: 'To do'
     }),

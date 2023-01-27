@@ -8,6 +8,7 @@ interface TaskProps {
 }
 
 const TaskItem = (props: TaskProps) => {
+    const task: Task = props.value
     const taskStyle: React.CSSProperties = {
         backgroundColor: 'white',
         padding: '7px',
@@ -15,18 +16,30 @@ const TaskItem = (props: TaskProps) => {
         boxShadow: 'rgb(0 0 0 / 16%) -1px 1px 2px',
     }
 
+    function getRandomColor(): string {
+        const colors = ['darkcyan', 'indianred', 'forestgreen']
+        const random = Math.floor(Math.random() * 3)
+        return colors[random]
+    }
+
+    function getHumanReadableDate(date: Date): string {
+        const result = new Date(date || '')
+        return result.toDateString()
+    }
+
     return (
         <Column style={taskStyle}>
             <span style={{
                 height: '8px',
                 width: '50px',
-                backgroundColor: `${props.value.getRandomColor()}`,
+                backgroundColor: `${getRandomColor()}`,
                 borderRadius: '25px',
             }}></span>
-            <h4 style={pStyle}>{props.value.content}</h4>
-            <p style={pStyle}>{props.value.getHumanReadableDate()}</p>
+            <h4 style={pStyle}>{task.content}</h4>
+            <p style={pStyle}>{getHumanReadableDate(task.createdAt)}</p>
         </Column>
     )
 }
+
 export default TaskItem;
 

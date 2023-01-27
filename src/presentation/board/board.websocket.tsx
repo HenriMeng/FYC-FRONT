@@ -2,7 +2,6 @@ import {io} from "socket.io-client";
 import React, {useState} from "react";
 import {ToastProps} from "../shared/common/toast/toast";
 import {tasksDoing, tasksDone, tasksResources, tasksTodo} from "../../api/board.mock";
-import {Task} from "../../domain/task.model";
 
 const socket = io("ws://localhost:3001", {
     reconnectionDelayMax: 10000,
