@@ -35,6 +35,7 @@ const TaskItem = (props: TaskProps) => {
                 backgroundColor: `${getRandomColor()}`,
                 borderRadius: '25px',
             }}></span>
+            <h3 style={pStyle}>{task.title}</h3>
             <h4 style={pStyle}>{task.content}</h4>
             <p style={pStyle}>{getHumanReadableDate(task.createdAt)}</p>
         </Column>
