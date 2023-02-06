@@ -1,25 +1,27 @@
 export interface TaskProps {
-    id: string
+    boardId?: string
+    id?: string
     title: string
     content: string
-    createdAt: Date
+    createdAt?: Date
     status: string
 }
 
 export class Task {
-    id: string
+    boardId?: string
+    id?: string
     title: string
     content: string
-    createdAt: Date
+    createdAt?: Date
     status: string
 
 
-    constructor(id: string, title: string, content: string, createdAt: Date, status: string) {
-        this.id = id;
-        this.title = title;
-        this.content = content;
-        this.createdAt = createdAt;
-        this.status = status;
+    constructor(taskProps: TaskProps) {
+        this.id = taskProps.id;
+        this.title = taskProps.title;
+        this.content = taskProps.content;
+        this.createdAt = taskProps.createdAt;
+        this.status = taskProps.status;
     }
 
 }

@@ -6,6 +6,7 @@ import ToastsContainer from "../shared/common/toast/toasts.container";
 import {Board} from "../../domain/board.model";
 import {SocketContext} from "../../socketContext";
 import {Task} from "../../domain/task.model";
+import {createBoard, createTask} from "../../api/board.api";
 
 
 const BoardList = () => {
@@ -13,8 +14,8 @@ const BoardList = () => {
 
 
     const [state, setState] = useState<Board[]>([]);
+    const [boardName, setBoardName] = useState<string>("");
     const [toasts, setToasts] = useState<ToastProps[]>([]);
-
 
     useEffect(() => {
         socketContext.init("ws://localhost:80/tasks")
@@ -32,6 +33,44 @@ const BoardList = () => {
     return (
         <>
             <ToastsContainer toasts={toasts}/>
+            <form
+                onSubmit={(event) => {
+                    event.preventDefault();
+                    createBoard(boardName);
+                }}
+            >
+                <Row style={{ marginBottom: '1rem' }}>
+                    <input
+                        type="text"
+                        value={boardName}
+                        onChange={(event) => setBoardName(event.target.value)}
+                        placeholder="Board name"
+                        onSubmit={(event) => {
+                            event.preventDefault();
+                            createBoard(boardName);}
+                        }
+                        style={{
+                            color: 'black',
+                            fontSize: '1rem',
+                            padding: '0.5rem',
+                            borderRadius: '4px',
+                            border: '1px solid #ccc',
+                        }}
+                    />
+                    <button
+                        type="submit"
+                        style={{
+                            backgroundColor: 'transparent',
+                            border: 'none',
+                            color: 'blue',
+                            cursor: 'pointer',
+                            marginLeft: '0.5rem',
+                        }}
+                    >
+                        Create Board
+                    </button>
+                </Row>
+            </form>
             <Row>
                 {
                     [...new Set(state.map(boards => boards))]
@@ -39,8 +78,9 @@ const BoardList = () => {
                             return <TaskColumn
                                 key={`TaskColumn-${index}`}
                                 boardName={board.name || "board"}
+                                boardId={board.id}
                                 tasks={board.tasks}
-                                //onAddCardClick={emitAddCard}
+                                onAddCardClick={createTask}
                             />
                         })
                 }
@@ -101,6 +141,9 @@ const BoardList = () => {
             }
         })
     }
+
+
+
 }
 
 export default BoardList

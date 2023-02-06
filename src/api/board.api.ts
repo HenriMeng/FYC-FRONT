@@ -23,3 +23,65 @@ export function getFullFilledBoard(): Promise<Board[]> {
             })
         });
 }
+
+export function createBoard(boardName: string): Promise<any> {
+    return fetch('http://localhost:3000/boards', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({name: boardName})
+    })
+        .then(response => response.json())
+        .then(data => {
+            return data;
+        });
+}
+
+export function createTask(task: Task): Promise<any> {
+    return fetch('http://localhost:3000/tasks', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(task)
+    })
+        .then(response => response.json())
+        .then(data => {
+            return data;
+        });
+}
+
+export function updateTask(task: Task): Promise<any> {
+    return fetch(`http://localhost:3000/tasks/${task.id}`, {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(task)
+    })
+        .then(response => response.json())
+        .then(data => {
+            return data;
+        });
+}
+
+export function deleteTask(taskId: string): Promise<any> {
+    return fetch(`http://localhost:3000/tasks/${taskId}`, {
+        method: 'DELETE'
+    })
+        .then(response => response.json())
+        .then(data => {
+            return data;
+        });
+}
+
+export function deleteBoard(boardId: string): Promise<any> {
+    return fetch(`http://localhost:3000/boards/${boardId}`, {
+        method: 'DELETE'
+    })
+        .then(response => response.json())
+        .then(data => {
+            return data;
+        });
+}
