@@ -1,34 +1,27 @@
 export interface TaskProps {
-    id: number
-    title?: string
+    boardId?: string
+    id?: string
+    title: string
     content: string
-    date?: string
+    createdAt?: Date
     status: string
 }
 
 export class Task {
-    id: number
-    title?: string
+    boardId?: string
+    id?: string
+    title: string
     content: string
-    date?: string
+    createdAt?: Date
     status: string
 
-    constructor(props: TaskProps) {
-        this.id = props.id;
-        this.title = props.title;
-        this.content = props.content;
-        this.date = props.date;
-        this.status = props.status;
+
+    constructor(taskProps: TaskProps) {
+        this.id = taskProps.id;
+        this.title = taskProps.title;
+        this.content = taskProps.content;
+        this.createdAt = taskProps.createdAt;
+        this.status = taskProps.status;
     }
 
-    getHumanReadableDate(): string {
-        const result = new Date(this.date || '')
-        return result.toDateString()
-    }
-
-    getRandomColor(): string {
-        const colors = ['darkcyan', 'indianred', 'forestgreen']
-        const random = Math.floor(Math.random() * 3)
-        return colors[random]
-    }
 }

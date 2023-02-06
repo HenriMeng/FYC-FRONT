@@ -1,28 +1,28 @@
 * {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-  color: white;
-  font-family: 'Open Sans', sans-serif;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    color: white;
+    font-family: 'Open Sans', sans-serif;
 }
 
 .App {
-  min-height: 100vh;
-  min-width: 100vw;
-  width: fit-content;
-  background: linear-gradient(#0e85b0, #00cbeb);
-  display: flex;
+    min-height: 100vh;
+    min-width: 100vw;
+    width: fit-content;
+    background: linear-gradient(#0e85b0, #00cbeb);
+    display: flex;
 }
 
 button {
-  width: fit-content;
-  border: none;
-  border-radius: 5px;
+    width: fit-content;
+    border: none;
+    border-radius: 5px;
 
-  font-size: 14px;
-  font-weight: 600;
-  
-  color: rgba(0, 0, 0, 0.4);
-  background-color: transparent;
-  cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+
+    color: rgba(0, 0, 0, 0.4);
+    background-color: transparent;
+    cursor: pointer;
 }

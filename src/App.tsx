@@ -1,6 +1,6 @@
 import './App.css'
 import React from "react";
-import Board from "./presentation/board/board";
+import BoardList from "./presentation/board/boardList";
 import Column from "./presentation/shared/grid/column";
 
 function App() {
@@ -9,7 +9,7 @@ function App() {
         <div className="App">
             <Column style={{padding: '1rem'}}>
                 <h2>TrelloLike</h2>
-                <Board/>
+                <BoardList/>
             </Column>
         </div>
     )

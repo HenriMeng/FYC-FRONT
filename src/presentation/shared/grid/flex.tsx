@@ -6,4 +6,4 @@ const Flex = (props: any) => {
     )
 }
 
-export  default Flex
+export default Flex
